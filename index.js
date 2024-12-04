@@ -4,9 +4,18 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require('cors')
 const PORT = process.env.PORT || 3000;
+const cloudinary = require('cloudinary').v2
+const fileupload = require('express-fileupload')
 const userRouter = require('./routes/userRouter')
 
+  cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET, // Click 'View API Keys' above to copy your API secret
+  });
+
 //setting up middlewares
+app.use(fileupload({useTempFiles: true}))
 app.use(express.json());
 app.use(cors())
 
