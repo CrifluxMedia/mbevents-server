@@ -69,8 +69,19 @@ const createEvent = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+//
 const getUpcomingEvents = async (req, res) => {
-  res.send("get upcoming events");
+  try {
+    const currentDate = new Date();
+    //finds events where the date is in the future or today
+    const upcomingEvents = await EVENT.find({ date: { $gte: currentDate } })
+      .sort("date") //sort by date in asceding order
+      .limit(4); //limit the no of events to 4
+    res.status(200).json({ success: true, events: upcomingEvents });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 };
 const getFreeEvents = async (req, res) => {
   res.send("get free events");

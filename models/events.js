@@ -1,5 +1,5 @@
-const mongoose= require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const eventSchema = new Schema(
   {
@@ -13,7 +13,7 @@ const eventSchema = new Schema(
       trim: true,
     },
     date: {
-      type: String,
+      type: Date,
       required: true,
     },
     startTime: {
@@ -67,13 +67,13 @@ const eventSchema = new Schema(
         min: 0,
       },
     },
-    hostedBy:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true,
+    hostedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Event', eventSchema)
+module.exports = mongoose.model("Event", eventSchema);
