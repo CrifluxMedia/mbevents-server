@@ -47,6 +47,7 @@ const eventSchema = new Schema(
         },
       },
     },
+   
     price: {
       free: {
         type: Boolean,
